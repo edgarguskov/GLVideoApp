@@ -1,0 +1,7 @@
+<div class="video-list">
+  <mat-card *ngFor="let video of videos" (click)="selectVideo.emit(video.videoId)">
+    <img mat-card-image [src]="video.thumbnailUrl" alt="{{ video.title }}" />
+    <mat-card-title>{{ video.title }}</mat-card-title>
+    <mat-card-subtitle>{{ video.channelTitle }}</mat-card-subtitle>
+  </mat-card>
+</div>
