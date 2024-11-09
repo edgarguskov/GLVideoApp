@@ -4,6 +4,7 @@
 
 <div class="container">
     <app-search-bar (searchQuery)="onSearch($event)"></app-search-bar>
-  <app-video-list [videos]="videos" (selectVideo)="onSelectVideo($event)"></app-video-list>
-  <app-video-player [videoId]="selectedVideoId"></app-video-player>
+    <app-filter (filterChange)="onFilterChange($event)"></app-filter>
+    <app-video-list [videos]="videos" (selectVideo)="onSelectVideo($event)"></app-video-list>
+    <app-video-player [videoId]="selectedVideoId"></app-video-player>
 </div>

@@ -18,7 +18,7 @@ export class VideoService {
       .get<any>(this.API_URL, {
         params: {
           part: 'snippet',
-          maxResults: '15',
+          maxResults: 15,
           q: query,
           type: 'video',
           key: this.API_KEY,

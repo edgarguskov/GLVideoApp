@@ -1,5 +1,7 @@
-<mat-form-field appearance="fill" class="search-bar">
-  <mat-label>Search for Videos</mat-label>
-  <input matInput [(ngModel)]="searchTerm" placeholder="Enter" />
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+<div class="container">
+  <mat-form-field appearance="fill" class="search-bar">
+      <mat-label>Search for Videos</mat-label>
+    <input matInput [(ngModel)]="searchTerm" placeholder="Enter" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+</div>

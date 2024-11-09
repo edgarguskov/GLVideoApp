@@ -1,0 +1,40 @@
+.video-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+mat-card:hover {
+  transform: scale(1.05);
+}
+
+mat-card img {
+  border-bottom: 1px solid #ddd;
+  height: 180px;
+  object-fit: cover;
+}
+
+mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: lightgray;
+  padding: 10px;
+  letter-spacing: 0.5px;
+}
+
+mat-card-subtitle {
+  color: olive;
+  font-size: 14px;
+  padding: 10px;
+}
