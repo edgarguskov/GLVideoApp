@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, output} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
@@ -13,7 +13,7 @@ import {FormsModule} from '@angular/forms';
 export class SearchBarComponent {
   searchTerm: string = '';
 
-  @Output() searchQuery = new EventEmitter<string>();
+  searchQuery = output<string>();
 
   onSearch() {
     this.searchQuery.emit(this.searchTerm);

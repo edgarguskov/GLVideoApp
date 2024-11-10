@@ -1,9 +1,9 @@
-import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
+import {Component,InputSignal, input, output} from '@angular/core';
 import { Video } from '../../models/video.model';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {NgFor} from '@angular/common';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-video-list',
@@ -13,10 +13,8 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from '@angular/material/dia
   imports: [MatCardModule, MatButtonModule, NgFor],
 })
 export class VideoListComponent {
-  @Input() videoId!: string;
-  @Input() videos: Video[] = [];
-  @Output() selectVideo = new EventEmitter<string>();
-  constructor(private dialog: MatDialog) {}
-
+  videoId: InputSignal<string> = input.required();
+  videos: InputSignal<Video[]> = input.required();
+  selectVideo = output<string>();
 }
 

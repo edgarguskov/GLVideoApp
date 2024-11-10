@@ -1,4 +1,4 @@
-import {Component, inject, provideZoneChangeDetection} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {SafePipe} from './pipes/safe.pipe';
 import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import {VideoListComponent} from './components/video-list/video-list.component';
@@ -29,7 +29,7 @@ import {VideoModalComponent} from './components/video-modal/video-modal.componen
     FilterComponent
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   videos: Video[] = [];
   selectedVideoId = '';
   filteredVideos: Video[] = [];
@@ -44,7 +44,6 @@ export class AppComponent {
 
   onSearch(query: string) {
     this.videoService.searchVideos(query).subscribe((videos: Video[]) => {
-      console.log(videos);
       this.videos = videos;
       this.filteredVideos = videos;
     });
@@ -75,5 +74,4 @@ export class AppComponent {
       })
     }
   }
-
 }

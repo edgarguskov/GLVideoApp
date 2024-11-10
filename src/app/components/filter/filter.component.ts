@@ -5,7 +5,6 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {MatInput} from '@angular/material/input';
 import {MatSelect} from '@angular/material/select';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-filter',
