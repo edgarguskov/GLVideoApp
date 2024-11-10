@@ -1,8 +1,11 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, output, Output} from '@angular/core';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepicker, MatDatepickerToggle} from '@angular/material/datepicker';
-import {FormsModule} from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material/core';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule, MatOption} from '@angular/material/core';
+import {MatInput} from '@angular/material/input';
+import {MatSelect} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-filter',
@@ -13,18 +16,24 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatDatepickerToggle,
     MatFormFieldModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    MatInput,
+    MatSelect,
+    MatOption,
+    ReactiveFormsModule
   ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss'
 })
 export class FilterComponent {
-  @Output() filterChange = new EventEmitter<{ date: string; author: string }>();
 
-  filters = { date: '', author: '' };
+  filterChange = output<'Author A-Z' | 'Newest'| 'Oldest'>();
 
-  onFilterChange() {
-    this.filterChange.emit(this.filters);
+  filterControl = new FormControl('');
+
+  filterOptionsList = ['Author A-Z', 'Newest', 'Oldest'];
+
+  onFilterChange(option: 'Author A-Z' | 'Newest'| 'Oldest') {
+    this.filterChange.emit(option);
   }
-
 }

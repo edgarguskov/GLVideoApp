@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { SafePipe } from './pipes/safe.pipe';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { VideoListComponent } from './components/video-list/video-list.component';
-import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import {Component, inject, provideZoneChangeDetection} from '@angular/core';
+import {SafePipe} from './pipes/safe.pipe';
+import {SearchBarComponent} from './components/search-bar/search-bar.component';
+import {VideoListComponent} from './components/video-list/video-list.component';
+import {VideoPlayerComponent} from './components/video-player/video-player.component';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Video} from './models/video.model';
 import {VideoService} from './services/video.service';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 
 import {MatFormField, MatLabel} from '@angular/material/form-field';
 import {FilterComponent} from './components/filter/filter.component';
-
+import {MatDialog} from '@angular/material/dialog';
+import {VideoModalComponent} from './components/video-modal/video-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -32,8 +33,10 @@ export class AppComponent {
   videos: Video[] = [];
   selectedVideoId = '';
   filteredVideos: Video[] = [];
+  dialog = inject(MatDialog);
 
-  constructor(private videoService: VideoService) {}
+  constructor(private videoService: VideoService) {
+  }
 
   ngOnInit() {
     this.onSearch('random');
@@ -49,14 +52,28 @@ export class AppComponent {
 
   onSelectVideo(videoId: string) {
     this.selectedVideoId = videoId;
+    this.dialog.open(VideoModalComponent, {
+      data: this.selectedVideoId
+    });
+
   }
 
-  onFilterChange(filters: { date: string; author: string }) {
-    this.filteredVideos = this.videos.filter((video) => {
-      const matchesDate = filters.date ? new Date(video.publishedAt) >= new Date(filters.date) : true;
-      const matchesAuthor = filters.author ? video.channelTitle.toLowerCase().includes(filters.author.toLowerCase()) : true;
-      return matchesDate && matchesAuthor;
-    });
+  onFilterChange(option: 'Author A-Z' | 'Newest' | 'Oldest') {
+    if (option === 'Author A-Z') {
+      this.filteredVideos = this.videos.sort((a, b) => {
+        return a.channelTitle.localeCompare(b.channelTitle);
+      })
+    }
+    if (option === 'Newest') {
+      this.filteredVideos = this.videos.sort((a, b) => {
+        return b.publishedAt.getTime() - a.publishedAt.getTime();
+      })
+    }
+    if (option === 'Oldest') {
+      this.filteredVideos = this.videos.sort((a, b) => {
+        return a.publishedAt.getTime() - b.publishedAt.getTime();
+      })
+    }
   }
 
 }

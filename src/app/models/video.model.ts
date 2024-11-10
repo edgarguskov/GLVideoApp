@@ -3,6 +3,6 @@ export interface Video {
   title: string;
   description: string;
   channelTitle: string;
-  publishedAt: string;
+  publishedAt: Date;
   thumbnailUrl: string;
 }

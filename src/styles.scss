@@ -2,3 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mdc-dialog__surface {
+  overflow: hidden;
+}
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: unset!important;
+}
